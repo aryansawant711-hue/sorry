@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Bestie 🥺</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: 'Varela Round', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            transition: background-color 1s ease;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+        }
+        .sticker { width: 180px; height: 180px; margin-bottom: 20px; border-radius: 15px; }
+        h1 { color: #d81b60; font-size: 22px; margin-bottom: 10px; }
+        p { color: #555; font-size: 16px; margin-bottom: 25px; line-height: 1.5; }
+        
+        .btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            background-color: #ff80ab;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 128, 171, 0.3);
+        }
+        .btn:hover { background-color: #f06292; transform: scale(1.05); }
+        
+        #noBtn { background-color: #eeeeee; color: #9e9e9e; position: absolute; }
+
+        .page { display: none; }
+        .active { display: block; animation: fadeIn 0.6s ease-out; }
+
+        /* Final Page Style */
+        #page5 .sticker { width: 250px; height: 250px; transform: scale(1.1); animation: heartbeat 1.5s infinite; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1.1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Heart Shower */
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <!-- PAGE 1: GREETING -->
+        <div id="page1" class="page active">
+            <img class="sticker" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/mochi-catyoume/sticker_8.gif?998eeaa1122243fbd34c6159010f5cec&d=200x200">
+            <h1>Knock Knock...</h1>
+            <p>Your bestie is at the door with a very important message. please  let me in?</p>
+            <button class="btn" onclick="nextPage(2)">Open the door 🚪</button>
+        </div>
+
+        <!-- PAGE 2: SAD APOLOGY -->
+        <div id="page2" class="page">
+            <img class="sticker" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/mochi-catyoume/sticker_5.gif?998eeaa1122243fbd34c6159010f5cec&d=200x200">
+            <h1>I Feel Terrible...</h1>
+            <p>I hate it when we're not talking. It feels like the world is missing its sparkle, i cant pass my day without you baccha😭 . I'm really sorry for what happened. 🥺</p>
+            <button class="btn" onclick="nextPage(3)">Go on...</button>
+        </div>
+
+        <!-- PAGE 3: THE PEACE OFFERING -->
+        <div id="page3" class="page">
+            <img class="sticker" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/mochi-catyoume/sticker_18.gif?998eeaa1122243fbd34c6159010f5cec&d=200x200">
+            <h1>I Miss You BACCHA!</h1>
+            <p>I promise to be better. Also, pillu  I'm prepared to pay in ice creams,snacks and unlimited hugs. Deal? 🍟☕️</p>
+            <button class="btn" onclick="nextPage(4)">Almost there...</button>
+        </div>
+
+        <!-- PAGE 4: THE ULTIMATE CHOICE -->
+        <div id="page4" class="page">
+            <img class="sticker" src="https://i.pinimg.com/originals/f2/8d/2b/f28d2b5382516ada1de40f80cdabd79d.gif">
+            <h1>Forgive Me PILLU?</h1>
+            <p>PILLU! Will you please make me the happiest bestie ever and say yes? 💖</p>
+            <div style="height: 60px; position: relative; display: flex; justify-content: center; gap: 20px;">
+                <button class="btn" onclick="startHug()">Yes!</button>
+                <button id="noBtn" class="btn" onmouseover="moveNoButton()">No</button>
+            </div>
+        </div>
+
+        <!-- PAGE 5: THE BIG HUG (FINAL) -->
+        <div id="page5" class="page">
+            <img class="sticker" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/mochi-peach-cat-1/sticker_17.gif?e7d69efa04300f38ac01345415b1b1f4&d=200x200">
+            <h1 style="color: #ff4081; font-size: 28px;">BESTIES FOREVER!</h1>
+            <p>Thank you for being the best! I'm coming over for that hug right now! ✨💖✨</p>
+            <!-- No restart button here! The hug is final. -->
+        </div>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        function moveNoButton() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function startHug() {
+            nextPage(5);
+            document.body.style.backgroundColor = "#fff9c4"; // Change to a happy yellow
+            
+            // Start the heart shower
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['❤️', '💖', '✨', '🌸', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            heart.style.top = "-5vh";
+            document.body.appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+    </script>
+</body>
+</html>
+</html>
